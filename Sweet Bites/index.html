@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Sweet Bites</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    </head>
+
+
+    <body>
+
+<header class="main-header">
+    <div class="hero-image-containerr">
+        <img src="Imagenes/logo.png" alt="Sweet Bites Logo">
+    </div>
+
+    <!-- Botón hamburguesa -->
+    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+
+    <nav class="main-nav" id="menu">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="menu.html">Menú</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="pedidos.html">Pedidos</a></li>
+        </ul>
+    </nav>
+
+    <div class="search-bar">
+        <form id="form-busqueda">
+            <input type="search" id="input-busqueda" placeholder="Buscar en el menú...">
+        </form>
+    </div>
+
+    <script>
+      // Detectar cuando el usuario presiona Enter
+      const form = document.getElementById("form-busqueda");
+      form.addEventListener("submit", function(e) {
+        e.preventDefault(); // Evita recargar la misma página
+        const query = document.getElementById("input-busqueda").value.trim();
+        if (query) {
+          // Redirige al menú con el texto de búsqueda como parámetro
+          window.location.href = `menu.html?busqueda=${encodeURIComponent(query)}`;
+        }
+      });
+    </script>
+
+    <!-- Login agregado entre búsqueda y carrito -->
+   <!-- Login agregado entre búsqueda y carrito -->
+    <!-- Login simple: solo enlace al login.html -->
+<div class="login-container">
+  <a href="login.html" title="Iniciar sesión">
+    <img src="Imagenes/login.png" alt="Login" style="width:32px;height:32px;">
+  </a>
+</div>
+
+
+    <div class="cart-container">
+        <a href="pedidos.html" class="cart-link">
+            <img src="Imagenes/carrito.png" alt="Carrito de Compras">
+            <span class="cart-count">0</span>
+        </a>
+    </div>
+</header>
+
+<script>
+function toggleMenu() {
+    document.getElementById("menu").classList.toggle("active");
+}
+</script>
+
+
+<script>
+function toggleMenu() {
+    document.getElementById("menu").classList.toggle("active");
+}
+</script>
+
+
+    <main>
+        <section class="hero-section">
+            <div class="bienvenidos-banner">
+                <h1>BIENVENIDOS</h1>
+            </div>
+            <div class="hero-content">
+                <div class="hero-image-container">
+                    <img src="Imagenes/logo.png" alt="Postres Artesanales Sweet Bites">
+                </div>
+                <div class="hero-text-content">
+                    <h2>POSTRES ARTESANALES SWEET BITES</h2>
+                    <p>La mejor calidad de postres, hechos con los mejores ingredientes y con la mejor higiene.</p>
+                    <a href="pedidos.html" class="btn-pedir-ahora">Pedir Ahora</a>
+                </div>
+            </div>
+            <p class="hero-quote">"HECHO CON AMOR, PROBADO CON PLACER."</p>
+        </section>
+
+       <section class="featured-products-section">
+  <h2>NUESTROS PRODUCTOS</h2>
+
+  <div class="carousel-container">
+    <div class="carousel" id="carousel">
+      <div class="product-item">
+        <img src="Imagenes/pastelchoco.png" alt="Pastel de Chocolate">
+        <p>Pasteles</p>
+        <p class="price">$350.00</p>
+                        <button class="btn-añadir" data-name="Pastel de chocolate" data-price="350.00">Añadir</button>
+      </div>
+      <div class="product-item">
+        <img src="Imagenes/malteadafresa.png" alt="Malteada de Fresa">
+        <p>Malteadas</p>
+        <p class="price">$50.00</p>
+                        <button class="btn-añadir" data-name="Malteada de fresa" data-price="50.00">Añadir</button>
+      </div>
+      <div class="product-item">
+        <img src="Imagenes/crepacajeta.png" alt="Crepa de Fresa">
+        <p>Crepas</p>
+        <p class="price">$75.00</p>
+                        <button class="btn-añadir" data-name="Crepa de fresa" data-price="75.00">Añadir</button>
+      </div>
+      <div class="product-item">
+        <img src="Imagenes/brownie.jpg" alt="Brownie">
+        <p>Brownies</p>
+        <p class="price">$60.00</p>
+                        <button class="btn-añadir" data-name="Brownie" data-price="60.00">Añadir</button>
+      </div>
+      <div class="product-item">
+        <img src="Imagenes/helado-choc.jpg" alt="Helado Chocolate">
+        <p>Helados</p>
+        <p class="price">$45.00</p>
+                        <button class="btn-añadir" data-name="Helado de chocolate" data-price="45.00">Añadir</button>
+      </div>
+      <div class="product-item">
+        <img src="Imagenes/helado-vainilla.jpg" alt="Helado de Vainilla">
+        <p>Helados</p>
+        <p class="price">$45.00</p>
+                        <button class="btn-añadir" data-name="Helado de vainilla" data-price="45.00">Añadir</button>
+      </div>
+      <div class="product-item">
+        <img src="Imagenes/helado-de-fresa.jpg" alt="Helado Chocolate">
+        <p>Helados</p>
+        <p class="price">$45.00</p>
+                        <button class="btn-añadir" data-name="Helado de chocolate" data-price="45.00">Añadir</button>
+      </div>
+     
+    </div>
+
+    <!-- Botones de control -->
+    <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
+  </div>
+</section>
+
+
+        <section class="testimonials-section">
+  <h2 class="testimonials-title">TESTIMONIOS</h2>
+
+  <div class="carousel3d">
+    <div class="carousel3d-item">
+      <h3>Karla Gutiérrez</h3>
+      <p>"Me encantan los pasteles de Sweet Bites, tienen un sabor casero y los precios son muy accesibles."</p>
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+    </div>
+
+    <div class="carousel3d-item">
+      <h3>Mónica Fernández</h3>
+      <p>"He pedido varias veces y la verdad es que todo delicioso y muy rápido. ¡Recomendadísimo!"</p>
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+    </div>
+
+    <div class="carousel3d-item">
+      <h3>Roberto Hernández</h3>
+      <p>"Excelente sabor y atención. Sus crepas son las mejores que he probado en la ciudad."</p>
+      <div class="stars">⭐⭐⭐⭐</div>
+    </div>
+
+    <div class="carousel3d-item">
+      <h3>Laura Campos</h3>
+      <p>"Los brownies son irresistibles, suaves y con el toque perfecto de chocolate."</p>
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+    </div>
+  </div>
+</section>
+    </main>
+
+    <footer class="compact-footer">
+        <div class="footer-social-icons">
+            <a href="#" aria-label="Instagram"><img src="Imagenes/instagram.png" alt="Instagram"></a>
+            <a href="#" aria-label="Twitter"><img src="Imagenes/twitter.png" alt="Twitter"></a>
+            <a href="#" aria-label="WhatsApp"><img src="Imagenes/whatsapp.png" alt="WhatsApp"></a>
+            <a href="#" aria-label="Facebook"><img src="Imagenes/facebook11.png" alt="Facebook"></a>
+        </div>
+        <div class="footer-copyright">
+            <p>Copyright © 2025 Sweet Bites | <a href="mapa-sitio.html">Mapa de Sitio</a> <a href="terminos-politicas.html">Términos y Políticas</a></p>
+        </div>
+    </footer>
+
+
+<script>
+    
+    // Inicializa el contador del carrito al cargar la página (lee del localStorage)
+    document.addEventListener('DOMContentLoaded', () => {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartCount = document.querySelector('.cart-count');
+        if (cartCount) {
+            cartCount.textContent = cart.length;
+        }
+    });
+
+    // Función para manejar el menú responsivo (si es necesario aquí)
+    function toggleMenu() {
+        document.getElementById("menu").classList.toggle("active");
+    }
+
+    // Lógica para AÑADIR productos al carrito
+    document.querySelectorAll('.btn-añadir').forEach(button => {
+        button.addEventListener('click', (e) => {
+            // Asegúrate de que este bloque use data-attributes si solo has probado con uno
+            const productName = e.target.getAttribute('data-name'); 
+            const productPrice = parseFloat(e.target.getAttribute('data-price')); 
+            
+            // Si el producto no tiene nombre o precio válido, salimos
+            if (!productName || isNaN(productPrice)) {
+                console.error("Producto sin data-name o data-price válido. Revisa el HTML.");
+                return;
+            }
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name: productName, price: productPrice });
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Actualizar contador y animación
+            const cartCount = document.querySelector('.cart-count');
+            cartCount.textContent = cart.length;
+            cartCount.classList.add('bounce');
+            setTimeout(() => cartCount.classList.remove('bounce'), 400); 
+        });
+    });
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const carousel = document.getElementById("carousel");
+  const items = Array.from(carousel.children);
+  const totalItems = items.length;
+  const visibleItems = 3; // 🔧 Cambia este número si quieres mostrar más o menos
+  let currentIndex = 0;
+  let isTransitioning = false;
+
+  // 🔁 Clonar los primeros y últimos elementos para crear el bucle infinito
+  const clonesStart = items.slice(-visibleItems).map(item => item.cloneNode(true));
+  const clonesEnd = items.slice(0, visibleItems).map(item => item.cloneNode(true));
+
+  clonesStart.forEach(clone => carousel.prepend(clone));
+  clonesEnd.forEach(clone => carousel.append(clone));
+
+  const allItems = carousel.querySelectorAll(".product-item");
+  const slideWidth = allItems[0].offsetWidth + 20; // ancho + margen
+  let position = visibleItems * slideWidth;
+
+  // Posicionar el carrusel al inicio “real”
+  carousel.style.transform = `translateX(-${position}px)`;
+  carousel.style.transition = "transform 0.6s ease";
+  carousel.style.display = "flex";
+
+  // Función para mover el carrusel
+  function moveSlide(direction) {
+    if (isTransitioning) return;
+    isTransitioning = true;
+
+    position += direction * slideWidth;
+    carousel.style.transition = "transform 0.6s ease";
+    carousel.style.transform = `translateX(-${position}px)`;
+
+    carousel.addEventListener("transitionend", () => {
+      if (direction === 1 && position >= (totalItems + visibleItems) * slideWidth) {
+        carousel.style.transition = "none";
+        position = visibleItems * slideWidth;
+        carousel.style.transform = `translateX(-${position}px)`;
+      } else if (direction === -1 && position <= 0) {
+        carousel.style.transition = "none";
+        position = totalItems * slideWidth;
+        carousel.style.transform = `translateX(-${position}px)`;
+      }
+      isTransitioning = false;
+    }, { once: true });
+  }
+
+  // Movimiento automático cada 3 segundos
+  let autoSlide = setInterval(() => moveSlide(1), 3000);
+
+  // Botones manuales
+  document.querySelector(".prev").addEventListener("click", () => {
+    clearInterval(autoSlide);
+    moveSlide(-1);
+    autoSlide = setInterval(() => moveSlide(1), 3000);
+  });
+
+  document.querySelector(".next").addEventListener("click", () => {
+    clearInterval(autoSlide);
+    moveSlide(1);
+    autoSlide = setInterval(() => moveSlide(1), 3000);
+  });
+
+  // Recalcular cuando cambia el tamaño de la ventana
+  window.addEventListener("resize", () => {
+    const newWidth = allItems[0].offsetWidth + 20;
+    position = (currentIndex + visibleItems) * newWidth;
+    carousel.style.transition = "none";
+    carousel.style.transform = `translateX(-${position}px)`;
+  });
+});
+</script>
+
+</body>
+</html>

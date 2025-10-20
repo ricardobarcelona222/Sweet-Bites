@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sweet Bites - Iniciar Sesión</title>
+  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- LOGIN ANIMADO ---------- */
+    :root {
+      --color-primary-pink: #FFC0CB;
+      --color-secondary-beige: #F8F5E1;
+      --color-accent-green: #4CAF50;
+      --color-accent-red: #F44336;
+      --color-text-dark: #333;
+      --color-white: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--color-secondary-beige);
+      margin: 0;
+      padding: 0;
+    }
+
+    .login-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 200px);
+      background: linear-gradient(135deg, var(--color-primary-pink), var(--color-light-purple, #DCD0FF));
+    }
+
+    .login-container {
+      width: 850px;
+      height: 500px;
+      background-color: var(--color-white);
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      transition: 0.7s ease;
+    }
+
+    .form-container {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 50%;
+      padding: 60px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: all 0.6s ease-in-out;
+    }
+
+    .login-form {
+      left: 0;
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .register-form {
+      left: 0;
+      opacity: 0;
+      z-index: 1;
+    }
+
+    .login-container.active .login-form {
+      transform: translateX(100%);
+      opacity: 0;
+      z-index: 1;
+    }
+
+    .login-container.active .register-form {
+      transform: translateX(100%);
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background: var(--color-primary-pink);
+      color: var(--color-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 40px;
+      transition: transform 0.6s ease-in-out;
+    }
+
+    .login-container.active .overlay {
+      transform: translateX(-100%);
+    }
+
+    .overlay h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .overlay p {
+      margin-bottom: 25px;
+    }
+
+    .overlay button {
+      background: transparent;
+      border: 2px solid var(--color-white);
+      color: var(--color-white);
+      padding: 10px 30px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .overlay button:hover {
+      background: var(--color-white);
+      color: var(--color-text-dark);
+    }
+
+    form label {
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    form input {
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    form button {
+      background-color: var(--color-accent-green);
+      color: var(--color-white);
+      border: none;
+      padding: 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    form button:hover {
+      background-color: #3d8b40;
+    }
+
+    /* ---------- DATOS DE USUARIO ---------- */
+    .user-info-box {
+      background: var(--color-white);
+      width: 400px;
+      margin: 50px auto;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .user-info-box h2 {
+      color: var(--color-accent-green);
+      margin-bottom: 15px;
+    }
+
+    .btn-logout {
+      background: var(--color-accent-red);
+      color: var(--color-white);
+      border: none;
+      padding: 10px 25px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-logout:hover {
+      background: #d63a2c;
+    }
+    :root {
+  --color-primary-pink: #FFC0CB;
+  --color-secondary-beige: #F8F5E1;
+  --color-accent-green: #4CAF50;
+  --color-accent-red: #F44336;
+  --color-text-dark: #333;
+  --color-white: #FFFFFF;
+
+  /* Fuentes */
+  --font-heading: 'Pacifico', cursive;
+  --font-body: 'Quicksand', sans-serif;
+}
+
+/* Aplicar fuente general */
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-secondary-beige);
+  margin: 0;
+  padding: 0;
+}
+
+/* Formularios */
+form label {
+  font-weight: 600;
+  margin-top: 10px;
+  display: block;
+  color: var(--color-text-dark);
+}
+
+form input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  border: 2px solid #ddd;
+  font-size: 1rem;
+  font-family: var(--font-body);
+  transition: 0.3s;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+form input:focus {
+  border-color: var(--color-primary-pink);
+  box-shadow: 0 4px 10px rgba(255,192,203,0.3);
+  outline: none;
+}
+
+/* Botones */
+form button {
+  width: 100%;
+  background-color: var(--color-accent-green);
+  color: var(--color-white);
+  border: none;
+  padding: 14px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+form button:hover {
+  background-color: #3d8b40;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Títulos del formulario */
+.form-container h2 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--color-primary-pink);
+  margin-bottom: 25px;
+  text-align: center;
+}
+/* Contenedor del formulario */
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  padding: 30px 20px; /* Menor padding para compactar */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.6s ease-in-out;
+}
+
+/* Inputs más pequeños */
+form input {
+  width: 100%;
+  padding: 8px 10px; /* Más compactos */
+  margin-bottom: 10px; /* Menor separación */
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem; /* Tamaño más pequeño */
+  font-family: var(--font-body);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+form input:focus {
+  border-color: var(--color-primary-pink);
+  box-shadow: 0 2px 5px rgba(255,192,203,0.25);
+  outline: none;
+}
+
+/* Botones más pequeños */
+form button {
+  width: 100%;
+  padding: 10px; /* Menor padding */
+  border-radius: 18px;
+  font-size: 0.95rem; /* Más pequeño */
+  font-family: var(--font-body);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+form button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Títulos más compactos */
+.form-container h2 {
+  font-size: 1.6rem; /* Tamaño reducido */
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="hero-image-containerr">
+      <img src="Imagenes/logo.png" alt="Sweet Bites Logo">
+    </div>
+
+    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+
+    <nav class="main-nav" id="menu">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="menu.html">Menú</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="pedidos.html">Pedidos</a></li>
+      </ul>
+    </nav>
+
+    <div class="search-bar">
+      <form id="form-busqueda">
+        <input type="search" id="input-busqueda" placeholder="Buscar en el menú...">
+      </form>
+    </div>
+
+    <div class="login-container-icon">
+      <a href="login.html" title="Cuenta">
+        <img src="Imagenes/login.png" alt="Login" style="width:32px;height:32px;">
+      </a>
+    </div>
+
+    <div class="cart-container">
+      <a href="pedidos.html" class="cart-link">
+        <img src="Imagenes/carrito.png" alt="Carrito de Compras">
+        <span class="cart-count">0</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Aquí se mostrará dinámicamente el contenido -->
+    <div id="login-section"></div>
+  </main>
+
+  <footer class="compact-footer">
+    <div class="footer-social-icons">
+      <a href="#"><img src="Imagenes/instagram.png" alt="Instagram"></a>
+      <a href="#"><img src="Imagenes/twitter.png" alt="Twitter"></a>
+      <a href="#"><img src="Imagenes/whatsapp.png" alt="WhatsApp"></a>
+      <a href="#"><img src="Imagenes/facebook11.png" alt="Facebook"></a>
+    </div>
+    <div class="footer-copyright">
+      <p>Copyright © 2025 Sweet Bites | 
+      <a href="mapa-sitio.html">Mapa de Sitio</a> | 
+      <a href="terminos-politicas.html">Términos y Políticas</a></p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("active");
+    }
+
+    // Verificar sesión
+    const sesion = JSON.parse(localStorage.getItem("sesionActiva"));
+    const section = document.getElementById("login-section");
+
+    if (sesion) {
+      section.innerHTML = `
+        <div class="user-info-box">
+          <h2>Hola, ${sesion.nombre} </h2>
+          <p><strong>Correo:</strong> ${sesion.email}</p>
+          <p><strong>Teléfono:</strong> ${sesion.telefono}</p>
+          <p><strong>Dirección:</strong> ${sesion.direccion}</p>
+          <button class="btn-logout" id="logout-btn">Cerrar sesión</button>
+        </div>
+      `;
+    } else {
+      section.innerHTML = `
+        <div class="login-wrapper">
+          <div class="login-container" id="loginBox">
+            <div class="form-container login-form">
+              <h2>Iniciar Sesión</h2>
+              <form id="login-form">
+                <label>Correo electrónico</label>
+                <input type="email" id="email" required>
+                <label>Contraseña</label>
+                <input type="password" id="password" required>
+                <button type="submit">Entrar</button>
+              </form>
+            </div>
+            <div class="form-container register-form">
+              <h2>Crear Cuenta</h2>
+              <form id="register-form">
+                <label>Nombre</label>
+                <input type="text" id="nombre" required>
+                <label>Teléfono</label>
+                <input type="tel" id="telefono" required>
+                <label>Dirección</label>
+                <input type="text" id="direccion" required>
+                <label>Correo electrónico</label>
+                <input type="email" id="emailR" required>
+                <label>Contraseña</label>
+                <input type="password" id="passwordR" required>
+                <button type="submit">Registrar</button>
+              </form>
+            </div>
+            <div class="overlay" id="overlay">
+              <h2>¡Hola, Amigo!</h2>
+              <p>Regístrate para disfrutar los mejores postres </p>
+              <button id="toggleForm">Registrarse</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Eventos dinámicos
+    document.addEventListener("click", (e) => {
+      if (e.target.id === "toggleForm") {
+        const box = document.getElementById("loginBox");
+        box.classList.toggle("active");
+        e.target.textContent = box.classList.contains("active") ? "Iniciar Sesión" : "Registrarse";
+        document.querySelector(".overlay h2").textContent = box.classList.contains("active") ? "¡Bienvenido de nuevo!" : "¡Hola, Amigo!";
+      }
+
+      if (e.target.id === "logout-btn") {
+        localStorage.removeItem("sesionActiva");
+        alert("Cerraste sesión correctamente ");
+        window.location.reload();
+      }
+    });
+
+    // Registro
+    document.addEventListener("submit", (e) => {
+      if (e.target.id === "register-form") {
+        e.preventDefault();
+        const nuevo = {
+          nombre: document.getElementById("nombre").value.trim(),
+          telefono: document.getElementById("telefono").value.trim(),
+          direccion: document.getElementById("direccion").value.trim(),
+          email: document.getElementById("emailR").value.trim(),
+          password: document.getElementById("passwordR").value.trim()
+        };
+        let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+        if (usuarios.some(u => u.email === nuevo.email)) {
+          alert("⚠️ Este correo ya está registrado.");
+          return;
+        }
+        usuarios.push(nuevo);
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+        alert("✅ Registro exitoso. Ahora inicia sesión.");
+        window.location.reload();
+      }
+
+      if (e.target.id === "login-form") {
+        e.preventDefault();
+        const email = document.getElementById("email").value.trim();
+        const pass = document.getElementById("password").value.trim();
+        const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+        const usuario = usuarios.find(u => u.email === email && u.password === pass);
+        if (usuario) {
+          localStorage.setItem("sesionActiva", JSON.stringify(usuario));
+          alert(`Bienvenido, ${usuario.nombre} `);
+          window.location.href = "index.html";
+        } else {
+          alert("❌ Correo o contraseña incorrectos.");
+        }
+      }
+    });
+  </script>
+</body>
+</html>

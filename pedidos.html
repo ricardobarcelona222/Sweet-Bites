@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos - Sweet Bites</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="hero-image-containerr">
+            <img src="Imagenes/logo.png" alt="Sweet Bites Logo">
+        </div>
+        <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+        <nav class="main-nav" id="menu">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="menu.html">Menú</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="pedidos.html">Pedidos</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+            <form id="form-busqueda">
+                <input type="search" id="input-busqueda" placeholder="Buscar en el menú...">
+            </form>
+        </div>
+        <div class="cart-container">
+            <a href="pedidos.html" class="cart-link">
+                <img src="Imagenes/carrito.png" alt="Carrito de Compras">
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+        <section class="orders-section">
+            <h1 class="section-title">PEDIDOS</h1>
+
+            <!-- Datos del usuario logeado -->
+            <div id="user-info" class="user-info-box"></div>
+
+            <div id="cart-items-container"></div>
+            <div class="subtotal-info">
+                <p>SUBTOTAL: $<span id="cart-subtotal">0.00</span></p>
+            </div>
+
+            <div class="payment-shipping-section">
+                <div class="payment-shipping-header-box">
+                    <h1>PAGO Y ENVÍO</h1>
+                </div>
+
+                <div class="payment-method-details">
+                    <h2 class="section-subtitle">METODO DE PAGO</h2>
+                    <p class="instruction-text">Introduzca sus datos para completar el pedido</p>
+
+                    <div class="delivery-option">
+                        <h3>ENTREGA EN DOMICILIO</h3>
+                        <div class="delivery-input-group">
+                            <label for="address">DIRECCIÓN</label>
+                            <input type="text" id="address" name="address" placeholder="Introduzca su dirección">
+                            <button class="btn-pickup">RECOGER EN TIENDA</button>
+                        </div>
+                    </div>
+
+                    <div class="payment-method-options">
+                        <h3>METODO DE PAGO</h3>
+                        <div class="payment-buttons">
+                            <button class="btn-payment active">Tarjeta crédito</button>
+                            <button class="btn-payment">PayPal</button>
+                            <button class="btn-payment">Efectivo</button>
+                        </div>
+                        <p class="instruction-text">Seleccione el metodo de pago</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-proceed-payment" id="proceedToPayment">PROCEDER AL PAGO</button>
+            <button class="btn-return" onclick="window.location.href='menu.html'">REGRESAR</button>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="compact-footer">
+        <div class="footer-social-icons">
+            <a href="#" aria-label="Instagram"><img src="Imagenes/instagram.png" alt="Instagram"></a>
+            <a href="#" aria-label="Twitter"><img src="Imagenes/twitter.png" alt="Twitter"></a>
+            <a href="#" aria-label="WhatsApp"><img src="Imagenes/whatsapp.png" alt="WhatsApp"></a>
+            <a href="#" aria-label="Facebook"><img src="Imagenes/facebook11.png" alt="Facebook"></a>
+        </div>
+        <div class="footer-copyright">
+            <p>Copyright © 2025 Sweet Bites | <a href="mapa-sitio.html">Mapa de Sitio</a> <a href="terminos-politicas.html">Términos y Políticas</a></p>
+        </div>
+    </footer>
+<!-- SCRIPTS -->
+<script>
+    function toggleMenu() {
+        document.getElementById("menu").classList.toggle("active");
+    }
+
+    // Buscador
+    const form = document.getElementById("form-busqueda");
+    form.addEventListener("submit", function(e){
+        e.preventDefault();
+        const query = document.getElementById("input-busqueda").value.trim();
+        if(query) window.location.href = `menu.html?busqueda=${encodeURIComponent(query)}`;
+    });
+
+    // Contador y carrito
+    const cartCountEl = document.querySelector('.cart-count'); 
+    const cartItemsContainer = document.getElementById('cart-items-container'); 
+    const cartSubtotalEl = document.getElementById('cart-subtotal');
+
+    function loadCart(){
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cartItemsContainer.innerHTML = '';
+        let subtotal = 0;
+
+        if(cart.length===0){
+            cartItemsContainer.innerHTML = '<p>Tu carrito está vacío. ¡Añade productos desde el <a href="menu.html">Menú</a>!</p>';
+        } else {
+            cart.forEach((item,index)=>{
+                const price = parseFloat(item.price);
+                const div = document.createElement('div');
+                div.classList.add('order-item');
+                div.innerHTML = `
+                    <div class="product-info-name"><strong>${item.name}</strong></div>
+                    <div class="product-details-group"><p class="price-unit">Precio Unitario: $${price.toFixed(2)}</p></div>
+                    <div class="product-details-group quantity-group">
+                        <label>Cantidad: <input type="number" min="1" value="1" class="item-quantity" data-index="${index}" data-price="${price.toFixed(2)}"></label>
+                    </div>
+                    <div class="product-details-group total-group"><p>Total: $<span class="item-total">${price.toFixed(2)}</span></p></div>
+                    <div class="product-details-group delete-group"><button class="btn-eliminar" data-index="${index}">❌ Eliminar</button></div>
+                `;
+                cartItemsContainer.appendChild(div);
+                subtotal += price;
+            });
+        }
+
+        cartSubtotalEl.textContent = subtotal.toFixed(2);
+        if(cartCountEl) cartCountEl.textContent = cart.length;
+    }
+
+    loadCart();
+
+    // Actualizar cantidad
+    cartItemsContainer.addEventListener('input',(e)=>{
+        if(e.target.classList.contains('item-quantity')){
+            let qty = parseInt(e.target.value);
+            const finalQty = (qty>0 && !isNaN(qty)) ? qty : 1;
+            e.target.value = finalQty;
+            const price = parseFloat(e.target.getAttribute('data-price'));
+            e.target.closest('.order-item').querySelector('.item-total').textContent = (price*finalQty).toFixed(2);
+            let newSubtotal = 0;
+            document.querySelectorAll('.item-total').forEach(el=>newSubtotal+=parseFloat(el.textContent));
+            cartSubtotalEl.textContent = newSubtotal.toFixed(2);
+        }
+    });
+
+    // Eliminar producto
+    cartItemsContainer.addEventListener('click',(e)=>{
+        if(e.target.classList.contains('btn-eliminar')){
+            const index = parseInt(e.target.dataset.index);
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index,1);
+            localStorage.setItem('cart',JSON.stringify(cart));
+            loadCart();
+        }
+    });
+
+    // Selección de método de pago
+    const paymentButtons = document.querySelectorAll('.btn-payment');
+    paymentButtons.forEach(btn=>{
+        btn.addEventListener('click',()=>{
+            paymentButtons.forEach(b=>b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+
+    // 🔹 Verificar sesión del usuario y mostrar datos
+    document.addEventListener("DOMContentLoaded", () => {
+        const sesion = JSON.parse(localStorage.getItem('sesionActiva'));
+        
+        if (!sesion) {
+            alert("Debes iniciar sesión primero.");
+            window.location.href = "login.html";
+            return;
+        }
+
+        // Mostrar datos del usuario en un contenedor dentro de orders-section
+        const ordersSection = document.querySelector(".orders-section");
+        const userInfoDiv = document.createElement("div");
+        userInfoDiv.id = "user-info";
+        userInfoDiv.classList.add("user-info");
+        userInfoDiv.innerHTML = `
+            <h3>Datos del cliente</h3>
+            <p><strong>Nombre:</strong> ${sesion.nombre}</p>
+            <p><strong>Teléfono:</strong> ${sesion.telefono}</p>
+            <p><strong>Dirección:</strong> ${sesion.direccion}</p>
+            <p><strong>Correo:</strong> ${sesion.email}</p>
+            <button id="logout-btn" class="btn-eliminar">Cerrar sesión</button>
+        `;
+        ordersSection.insertAdjacentElement("afterbegin", userInfoDiv);
+
+        // Autocompletar dirección en el formulario
+        const addressInput = document.getElementById("address");
+        if(addressInput) addressInput.value = sesion.direccion || "";
+    });
+
+    // Cerrar sesión
+    document.addEventListener('click', e => {
+        if(e.target.id === 'logout-btn'){
+            localStorage.removeItem('sesionActiva');
+            alert("Has cerrado sesión.");
+            window.location.href = "login.html";
+        }
+    });
+
+    // Proceder al pago
+    document.getElementById('proceedToPayment').addEventListener('click',()=>{
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        if(cart.length===0){ 
+            alert("Tu carrito está vacío 🛒"); 
+            return;
+        }
+
+        const sesion = JSON.parse(localStorage.getItem('sesionActiva'));
+        const address = document.getElementById('address').value || "";
+        const selectedPayment = document.querySelector('.btn-payment.active').textContent;
+        const orderNumber = Math.floor(Math.random()*9000)+1000;
+
+        const orderInfo = {
+            orderNumber,
+            address,
+            city: "CDMX",
+            whatsapp: sesion ? sesion.telefono : "555-555-5555",
+            paymentMethod: selectedPayment
+        };
+
+        localStorage.setItem('orderInfo',JSON.stringify(orderInfo));
+
+        // Vaciar carrito después de guardar la info
+        localStorage.removeItem('cart');
+
+        // Redirigir a gracias.html
+        window.location.href = "gracias.html";
+    });
+</script>
+
+</body>
+</html>

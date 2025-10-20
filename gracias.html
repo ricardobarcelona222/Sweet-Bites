@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Pedido - Sweet Bites</title>
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="hero-image-containerr">
+            <img src="Imagenes/logo.png" alt="Sweet Bites Logo">
+        </div>
+        <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+        <nav class="main-nav" id="menu">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="menu.html">Menú</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="pedidos.html">Pedidos</a></li>
+            </ul>
+        </nav>
+        <div class="cart-container">
+            <a href="pedidos.html" class="cart-link">
+                <img src="Imagenes/carrito.png" alt="Carrito de Compras">
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+        <section class="order-confirmation-section">
+            <div class="confirmation-content-wrapper">
+                <div class="order-summary-box">
+                    <h2>INFORMACIÓN DE PEDIDO</h2>
+                    <p id="order-number">ORDEN No. 00</p>
+                    <p id="order-address">Domicilio: XXXXXXX</p>
+                    <p id="order-city">CDMX</p>
+                    <p id="order-whatsapp">Whatsapp: 555-555-5555</p>
+                    <h3>Método de pago:</h3>
+                    <p id="payment-method"></p>
+                    <div id="payment-details"></div>
+                </div>
+                <div class="hero-image-container confirmation-image">
+                    <img src="Imagenes/logo.png" alt="Postres Artesanales Sweet Bites">
+                </div>
+            </div>
+
+            <h1 class="thank-you-message">GRACIAS POR SU COMPRA.</h1>
+
+            <div class="additional-info">
+                <p>HORARIOS: 5:00 P.M. a 12:00 A.M.</p>
+                <p>VIERNES, SÁBADO Y DOMINGO</p>
+                <p>CDMX</p>
+                <p>Whatsapp: 555-555-5555</p>
+            </div>
+
+            <div class="action-buttons-container">
+                <button class="btn-return" onclick="window.location.href='menu.html'">REGRESAR</button>
+                <button id="confirm-payment-btn" style="display:none;">CONFIRMAR PAGO</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="compact-footer">
+        <div class="footer-social-icons">
+            <a href="#" aria-label="Instagram"><img src="Imagenes/instagram.png" alt="Instagram"></a>
+            <a href="#" aria-label="Twitter"><img src="Imagenes/twitter.png" alt="Twitter"></a>
+            <a href="#" aria-label="WhatsApp"><img src="Imagenes/whatsapp.png" alt="WhatsApp"></a>
+            <a href="#" aria-label="Facebook"><img src="Imagenes/facebook11.png" alt="Facebook"></a>
+        </div>
+        <div class="footer-copyright">
+            <p>Copyright © 2025 Sweet Bites | <a href="mapa-sitio.html">Mapa de Sitio</a> <a href="terminos-politicas.html">Términos y Políticas</a></p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+   <script>
+function toggleMenu() {
+    document.getElementById("menu").classList.toggle("active");
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const orderInfo = JSON.parse(localStorage.getItem('orderInfo')) || {};
+    const paymentDetailsEl = document.getElementById('payment-details');
+    const confirmBtn = document.getElementById('confirm-payment-btn');
+
+    if(orderInfo.orderNumber){
+        document.getElementById('order-number').textContent = "ORDEN No. " + orderInfo.orderNumber;
+        document.getElementById('order-address').textContent = "Domicilio: " + orderInfo.address;
+        document.getElementById('order-city').textContent = orderInfo.city;
+        document.getElementById('order-whatsapp').textContent = "Whatsapp: " + orderInfo.whatsapp;
+        document.getElementById('payment-method').textContent = orderInfo.paymentMethod || "";
+
+        const method = orderInfo.paymentMethod.toLowerCase();
+
+        if(method.includes("tarjeta")){
+            paymentDetailsEl.innerHTML = `
+                <p>Ingrese los datos de su tarjeta:</p>
+                <label>Número de tarjeta: <input type="text" id="card-number" placeholder="1234 5678 9012 3456"></label><br>
+                <label>CVV: <input type="text" id="card-cvv" placeholder="123"></label><br>
+                <label>Fecha de expiración: <input type="month" id="card-exp"></label>
+            `;
+            confirmBtn.style.display = "inline-block";
+            confirmBtn.textContent = "CONFIRMAR PAGO";
+            confirmBtn.onclick = () => {
+                const card = document.getElementById('card-number').value.trim();
+                const cvv = document.getElementById('card-cvv').value.trim();
+                const exp = document.getElementById('card-exp').value.trim();
+                if(card && cvv && exp){
+                    alert("Pago con tarjeta confirmado ✅");
+                    confirmBtn.style.display = "none";
+                } else {
+                    alert("Por favor complete todos los datos de la tarjeta.");
+                }
+            };
+        }
+        else if(method.includes("paypal")){
+            paymentDetailsEl.innerHTML = `
+                <p>Ingrese su correo de PayPal:</p>
+                <input type="email" id="paypal-email" placeholder="correo@paypal.com">
+            `;
+            confirmBtn.style.display = "inline-block";
+            confirmBtn.textContent = "CONFIRMAR PAGO";
+            confirmBtn.onclick = () => {
+                const email = document.getElementById('paypal-email').value.trim();
+                if(email){
+                    alert("Pago por PayPal confirmado ✅");
+                    confirmBtn.style.display = "none";
+                } else {
+                    alert("Por favor ingrese su correo de PayPal.");
+                }
+            };
+        }
+        else if(method.includes("efectivo")){
+            const qrData = `Pagar orden #${orderInfo.orderNumber} en efectivo`;
+            paymentDetailsEl.innerHTML = `
+                <p>Pague al recibir el pedido.</p>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrData)}" 
+                     alt="QR para pagar en efectivo" style="width:200px;">
+            `;
+            confirmBtn.style.display = "inline-block";
+            confirmBtn.textContent = "CONFIRMAR PAGO AL RECIBIR";
+            confirmBtn.onclick = () => {
+                alert("Pago en efectivo confirmado ✅");
+                confirmBtn.style.display = "none";
+            };
+        }
+    }
+
+    // Actualizar contador del carrito en el header
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartCount = document.querySelector('.cart-count');
+    if(cartCount) cartCount.textContent = cart.length;
+});
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$('#confirm-payment-btn').click(function () {
+  let button = $(this);
+  button.removeClass('animate');
+
+  setTimeout(() => {
+    button.addClass('animate');
+  }, 10);
+
+  setTimeout(() => {
+    button.removeClass('animate');
+  }, 1000);
+});
+</script>
+
+
+</body>
+</html>

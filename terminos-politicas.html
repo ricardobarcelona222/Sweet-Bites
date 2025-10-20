@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Términos y Políticas - Sweet Bites</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    </head>
+<body>
+
+       <header class="main-header">
+    <div class="hero-image-containerr">
+        <img src="Imagenes/logo.png" alt="Sweet Bites Logo">
+    </div>
+
+    <!-- Botón hamburguesa -->
+    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+
+    <nav class="main-nav" id="menu">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="menu.html">Menú</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="pedidos.html">Pedidos</a></li>
+        </ul>
+    </nav>
+
+    <div class="search-bar">
+  <form id="form-busqueda">
+    <input type="search" id="input-busqueda" placeholder="Buscar en el menú...">
+  </form>
+</div>
+
+<script>
+  // Detectar cuando el usuario presiona Enter
+  const form = document.getElementById("form-busqueda");
+  form.addEventListener("submit", function(e) {
+    e.preventDefault(); // Evita recargar la misma página
+    const query = document.getElementById("input-busqueda").value.trim();
+    if (query) {
+      // Redirige al menú con el texto de búsqueda como parámetro
+      window.location.href = `menu.html?busqueda=${encodeURIComponent(query)}`;
+    }
+  });
+</script>
+
+    <div class="cart-container">
+    <a href="pedidos.html" class="cart-link">
+        <img src="Imagenes/carrito.png" alt="Carrito de Compras">
+        <span class="cart-count">0</span>
+    </a>
+</div>
+
+</header>
+
+<script>
+function toggleMenu() {
+    document.getElementById("menu").classList.toggle("active");
+}
+</script>
+
+
+    <main>
+        <section class="terms-policies-section">
+            <h1 class="section-title">TERMINOS Y POLITICAS</h1>
+
+            <div class="policy-content">
+                <div class="privacy-notice">
+                    <h2>Aviso de Privacidad</h2>
+                    <p>En Sweet Bites, respetamos tu privacidad. Los datos personales que nos proporcionas (nombre, dirección, teléfono, correo electrónico) se utilizan únicamente para procesar tu pedido, mejorar tu experiencia y enviar promociones.</p>
+                    <p>No compartimos tu información con terceros, excepto para cumplir con tu entrega. Puedes ejercer tus derechos ARCO (acceso, rectificación, cancelación u oposición) contactándonos a [correo/teléfono].</p>
+                </div>
+
+                <div class="shipping-policies">
+                    <h2>Políticas de Envío</h2>
+                    <ul>
+                        <li>Zona de entrega: "CDMX".</li>
+                        <li>Horario: Entregamos en horario 5:00 P.M. a 11:00 AM, de Viernes a domingo.</li>
+                        <li>Tiempo de entrega: 30 minutos a 1 hora</li>
+                        <li>Costos: Envío gratuito.</li>
+                        <li>Cambios/Devoluciones: No aceptamos devoluciones por naturaleza de los productos (salvo error nuestro).</li>
+                    </ul>
+                    <p class="note">Nota: Si necesitas algo más específico, dime y te ayudamos.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+   <footer class="compact-footer">
+        <div class="footer-social-icons">
+            <a href="#" aria-label="Instagram"><img src="Imagenes/instagram.png" alt="Instagram"></a>
+            <a href="#" aria-label="Twitter"><img src="Imagenes/twitter.png" alt="Twitter"></a>
+            <a href="#" aria-label="WhatsApp"><img src="Imagenes/whatsapp.png" alt="WhatsApp"></a>
+            <a href="#" aria-label="Facebook"><img src="Imagenes/facebook11.png" alt="Facebook"></a>
+        </div>
+        <div class="footer-copyright">
+            <p>Copyright © 2025 Sweet Bites | Mapa de Sitio</p>
+        </div>
+    </footer>
+    
+</script>
+<script>
+const cartCount = document.querySelector('.cart-count');
+
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', () => {
+        // Incrementa el contador
+        let count = parseInt(cartCount.textContent);
+        cartCount.textContent = count + 1;
+
+        // Agrega la clase para animación
+        cartCount.classList.add('bounce');
+
+        // Quita la clase después de que termine la animación
+        setTimeout(() => {
+            cartCount.classList.remove('bounce');
+        }, 400);
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú - Sweet Bites</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    
+    </head>
+<body>
+<header class="main-header">
+    <div class="hero-image-containerr">
+        <img src="Imagenes/logo.png" alt="Sweet Bites Logo">
+    </div>
+
+    <!-- Botón hamburguesa -->
+    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+
+    <nav class="main-nav" id="menu">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="menu.html">Menú</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="pedidos.html">Pedidos</a></li>
+        </ul>
+    </nav>
+
+    <div class="search-bar">
+        <form id="form-busqueda">
+            <input type="search" id="input-busqueda" placeholder="Buscar en el menú...">
+        </form>
+    </div>
+
+    <script>
+      // Detectar cuando el usuario presiona Enter
+      const form = document.getElementById("form-busqueda");
+      form.addEventListener("submit", function(e) {
+        e.preventDefault(); // Evita recargar la misma página
+        const query = document.getElementById("input-busqueda").value.trim();
+        if (query) {
+          // Redirige al menú con el texto de búsqueda como parámetro
+          window.location.href = `menu.html?busqueda=${encodeURIComponent(query)}`;
+        }
+      });
+    </script>
+
+    <!-- Login agregado entre búsqueda y carrito -->
+   <!-- Login agregado entre búsqueda y carrito -->
+    <!-- Login simple: solo enlace al login.html -->
+<div class="login-container">
+  <a href="login.html" title="Iniciar sesión">
+    <img src="Imagenes/login.png" alt="Login" style="width:32px;height:32px;">
+  </a>
+</div>
+
+
+    <div class="cart-container">
+        <a href="pedidos.html" class="cart-link">
+            <img src="Imagenes/carrito.png" alt="Carrito de Compras">
+            <span class="cart-count">0</span>
+        </a>
+    </div>
+</header>
+
+<script>
+function toggleMenu() {
+    document.getElementById("menu").classList.toggle("active");
+}
+</script>
+
+
+<script>
+function toggleMenu() {
+    document.getElementById("menu").classList.toggle("active");
+}
+</script>
+
+
+    <main>
+            <div class="menu-title-container">
+                <h1>MENÚ</h1>
+            </div>
+
+        <section class="menu-category-section" id="pasteles">
+            <div class="category-header">
+                <img src="Imagenes/iconopastel.png" alt="Icono de Pastel" class="category-icon">
+                <div class="category-title-container">
+                    <h2>PASTELES</h2>
+                </div>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="Imagenes/pastel3leches.png" alt="Pastel de Tres Leches">
+                    <div class="product-info">
+                        <h3>TRES LECHES</h3>
+                        <p class="product-description">Clásico bizcocho empapado en tres tipos de leche, ligero y delicioso.</p>
+                        <p class="product-price">$30.00</p>
+                        <button class="btn-añadir" data-name="Pastel de tres leches" data-price="30.00">Añadir</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="Imagenes/pastelchoco.png" alt="Pastel de Chocolate">
+                    <div class="product-info">
+                        <h3>CHOCOLATE</h3>
+                        <p class="product-description">Intenso y húmedo pastel de chocolate, perfecto para los amantes del cacao.</p>
+                        <p class="product-price">$30.00</p>
+                        <button class="btn-añadir" data-name="Pastel de Chocolate" data-price="120.00">Añadir</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="Imagenes/pastelfresa.png" alt="Pastel de Fresa">
+                    <div class="product-info">
+                        <h3>FRESA</h3>
+                        <p class="product-description">Delicado pastel con crema de fresa y trozos de fruta fresca.</p>
+                        <p class="product-price">$30.00</p>
+                        <button class="btn-añadir" data-name="Pastel de Fresa" data-price="30.00">Añadir</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="Imagenes/Pastel de cajeta.jpg" alt="Pastel de Cajeta">
+                    <div class="product-info">
+                        <h3>PASTEL DE CAJETA</h3>
+                        <p class="product-description">Bizcocho esponjoso relleno de cajeta quemada y nuez, con cobertura suave.</p>
+                        <p class="product-price">$80.00</p>
+                        <button class="btn-añadir" data-name="Pastel de Cajeta" data-price="80.00">Añadir</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="Imagenes/Pastel de Fresa con Crema.jpg" alt="Pastel de Fresa con Crema">
+                    <div class="product-info">
+                        <h3>FRESA CON CREMA</h3>
+                        <p class="product-description">Pan suave relleno de crema batida y fresas frescas, con topping de fresa natural.</p>
+                        <p class="product-price">$85.00</p>
+                        <button class="btn-añadir" data-name="Pastel de Fresa con Crema" data-price="85.00">Añadir</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="Imagenes/Pastel de Zanahoria+.jpg" alt="Pastel de Zanahoria">
+                    <div class="product-info">
+                        <h3>ZANAHORIA</h3>
+                        <p class="product-description">Pastel húmedo con zanahoria rallada, canela y betún de queso crema.</p>
+                        <p class="product-price">$88.00</p>
+                        <button class="btn-añadir" data-name="Pastel de Zanahoria" data-price="88.00">Añadir</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="Imagenes/Pastel de Oreo.jpg" alt="Pastel de Oreo">
+                    <div class="product-info">
+                        <h3>OREO DREAM</h3>
+                        <p class="product-description">Pastel de vainilla con crema de galleta Oreo y trozos crujientes por encima.</p>
+                        <p class="product-price">$90.00</p>
+                        <button class="btn-añadir" data-name="Pastel Oreo Dream" data-price="90.00">Añadir</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="Imagenes/Pastel Ferrero.png" alt="Pastel Ferrero">
+                    <div class="product-info">
+                        <h3>FERRERO</h3>
+                        <p class="product-description">Bizcocho de chocolate con crema de avellana y trozos de Ferrero Rocher.</p>
+                        <p class="product-price">$95.00</p>
+                        <button class="btn-añadir" data-name="Pastel Ferrero" data-price="95.00">Añadir</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="Imagenes/Pastel Napolitano.jpg" alt="Pastel Napolitano">
+                    <div class="product-info">
+                        <h3>NAPOLITANO</h3>
+                        <p class="product-description">Tres capas de sabor: chocolate, fresa y vainilla, con crema batida encima.</p>
+                        <p class="product-price">$92.00</p>
+                        <button class="btn-añadir" data-name="Pastel Napolitano" data-price="92.00">Añadir</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="Imagenes/Pastel de Vainilla.jpg" alt="Pastel de Vainilla">
+                    <div class="product-info">
+                        <h3>VAINILLA SUPREME</h3>
+                        <p class="product-description">Pastel clásico de vainilla con relleno de crema pastelera y glaseado suave.</p>
+                        <p class="product-price">$75.00</p>
+                        <button class="btn-añadir" data-name="Pastel de Vainilla Supreme" data-price="75.00">Añadir</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="Imagenes/Pastel Red Velvet.jpg" alt="Pastel Red Velvet">
+                    <div class="product-info">
+                        <h3>RED VELVET</h3>
+                        <p class="product-description">Bizcocho rojo con betún de queso crema, suave y elegante en cada bocado.</p>
+                        <p class="product-price">$95.00</p>
+                        <button class="btn-añadir" data-name="Pastel Red Velvet" data-price="95.00">Añadir</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="Imagenes/cheesefresa.png" alt="Cheesecake de Fresa">
+                    <div class="product-info">
+                        <h3>CHEESECAKE FRESA</h3>
+                        <p class="product-description">Cremoso cheesecake con base de galleta y cubierta de fresa natural.</p>
+                        <p class="product-price">$30.00</p>
+                        <button class="btn-añadir" data-name="Cheesecake de fresa" data-price="30.00">Añadir</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sizes-section cake-sizes-section">
+            <div class="sizes-title-container">
+                <h1>TAMAÑOS</h1>
+            </div>
+            <p class="sizes-subtitle">Elige el tamaño perfecto para tu ocasión</p>
+            <div class="price-table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Tamaño Chico</th>
+                            <th>Tamaño Mediano</th>
+                            <th>Tamaño Grande</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Pasteles</td>
+                            <td>$250.00</td>
+                            <td>$300.00</td>
+                            <td>$350.00</td>
+                        </tr>
+                        <tr>
+                            <td>Cheesecakes</td>
+                            <td>$200.00</td>
+                            <td>$250.00</td>
+                            <td>$300.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="menu-category-section" id="crepas">
+            <div class="category-header">
+                <img src="Imagenes/iconocrepa.png" alt="Icono de Crepa" class="category-icon">
+                <div class="category-title-container">
+                    <h2>CREPAS</h2>
+                </div>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="Imagenes/crepafresa.png" alt="Crepa de Fresa">
+                    <div class="product-info">
+                        <h3>FRESA</h3>
+                        <p class="product-description">Delicada crepa rellena de fresas frescas y crema batida.</p>
+                        <p class="product-price">$60.00</p>
+                        <button class="btn-añadir" data-name="Crepa de fresa" data-price="60.00">Añadir</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="Imagenes/crepacajeta.png" alt="Crepa de Cajeta">
+                    <div class="product-info">
+                        <h3>CAJETA</h3>
+                        <p class="product-description">Crepa dulce con cajeta quemada, ideal para los amantes de lo tradicional.</p>
+                        <p class="product-price">$60.00</p>
+                        <button class="btn-añadir" data-name="Pastel de Cajeta" data-price="60.00">Añadir</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="Imagenes/crepavainilla.png" alt="Crepa de Vainilla">
+                    <div class="product-info">
+                        <h3>VAINILLA</h3>
+                        <p class="product-description">Suave crepa con un toque clásico de vainilla y azúzar glas.</p>
+                        <p class="product-price">$60.00</p>
+                        <button class="btn-añadir" data-name="Crepa de vainilla" data-price="60.00">Añadir</button>
+                    </div>
+                </div>
+                    <div class="product-card">
+                        <img src="Imagenes/Crepes-de-nutella.jpg" alt="Crepa de Nutella">
+                        <div class="product-info">
+                            <h3>NUTELLA CLÁSICA</h3>
+                            <p class="product-description">Deliciosa crepa rellena de cremosa Nutella, espolvoreada con azúcar glass.</p>
+                            <p class="product-price">$55.00</p>
+                            <button class="btn-añadir" data-name="Crepa Nutella Clásica" data-price="55.00">Añadir</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="Imagenes/crepafresa.png" alt="Crepa de Fresa con Crema">
+                        <div class="product-info">
+                            <h3>FRESA CON CREMA</h3>
+                            <p class="product-description">Rellena con fresas naturales y crema batida, decorada con jarabe de fresa.</p>
+                            <p class="product-price">$60.00</p>
+                            <button class="btn-añadir" data-name="Crepa Fresa con Crema" data-price="60.00">Añadir</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="Imagenes/crepa de platano con cajeta.jpg" alt="Crepa de Cajeta">
+                        <div class="product-info">
+                            <h3>PLÁTANO CON CAJETA</h3>
+                            <p class="product-description">Rellena con plátano rebanado y bañada en cajeta y nuez picada.</p>
+                            <p class="product-price">$58.00</p>
+                            <button class="btn-añadir" data-name="Crepa Plátano con Cajeta" data-price="58.00">Añadir</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="Imagenes/crepa de oreo supreme.jpg" alt="Crepa Oreo Supreme">
+                        <div class="product-info">
+                            <h3>OREO SUPREME</h3>
+                            <p class="product-description">Crema de chocolate con trozos de galleta Oreo y una bola de helado de vainilla.</p>
+                            <p class="product-price">$65.00</p>
+                            <button class="btn-añadir" data-name="Crepa Oreo Supreme" data-price="65.00">Añadir</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="Imagenes/crepa de fresa con nutella.jpg" alt="Crepa Fresa y Nutella">
+                        <div class="product-info">
+                            <h3>FRESA & NUTELLA</h3>
+                            <p class="product-description">Combinación perfecta de fresas frescas y Nutella, con un toque de crema batida.</p>
+                            <p class="product-price">$62.00</p>
+                            <button class="btn-añadir" data-name="Crepa Fresa y Nutella" data-price="62.00">Añadir</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="Imagenes/Crepa Choco Avellana.jpg" alt="Crepa Choco Avellana">
+                        <div class="product-info">
+                            <h3>CHOCO-AVELLANA</h3>
+                            <p class="product-description">Rellena de crema de avellana y chispas de chocolate derretidas.</p>
+                            <p class="product-price">$60.00</p>
+                            <button class="btn-añadir" data-name="Crepa Choco Avellana" data-price="60.00">Añadir</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="Imagenes/Crepa Kinder.jpg" alt="Crepa Kinder">
+                        <div class="product-info">
+                            <h3>KINDER CREPE</h3>
+                            <p class="product-description">Nutella, trozos de barra Kinder y helado de vainilla encima.</p>
+                            <p class="product-price">$68.00</p>
+                            <button class="btn-añadir" data-name="Crepa Kinder" data-price="68.00">Añadir</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="Imagenes/Crepa Manzana Canela.jpg" alt="Crepa Manzana Canela">
+                        <div class="product-info">
+                            <h3>MANZANA CANELA</h3>
+                            <p class="product-description">Rellena con manzana caramelizada y un toque de canela, servida caliente.</p>
+                            <p class="product-price">$60.00</p>
+                            <button class="btn-añadir" data-name="Crepa Manzana Canela" data-price="60.00">Añadir</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="Imagenes/Crepa Hawaiana.jpg" alt="Crepa Hawaiana">
+                        <div class="product-info">
+                            <h3>HAWAIANA</h3>
+                            <p class="product-description">Jamón, piña y queso mozzarella con un toque de orégano.</p>
+                            <p class="product-price">$58.00</p>
+                            <button class="btn-añadir" data-name="Crepa Hawaiana" data-price="58.00">Añadir</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="Imagenes/Crepa Pollo con Champiñones.jpg" alt="Crepa Pollo con Champiñones">
+                        <div class="product-info">
+                            <h3>POLLO CON CHAMPIÑONES</h3>
+                            <p class="product-description">Pollo desmenuzado en salsa blanca con champiñones y queso gratinado.</p>
+                            <p class="product-price">$65.00</p>
+                            <button class="btn-añadir" data-name="Crepa Pollo con Champiñones" data-price="65.00">Añadir</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="Imagenes/Crepa Mexicana.jpg" alt="Crepa Mexicana">
+                        <div class="product-info">
+                            <h3>MEXICANA</h3>
+                            <p class="product-description">Pollo, frijoles, queso y salsa verde, con toque de crema y aguacate.</p>
+                            <p class="product-price">$68.00</p>
+                            <button class="btn-añadir" data-name="Crepa Mexicana" data-price="68.00">Añadir</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="Imagenes/Crepa Capresse.jpg" alt="Crepa Capresse">
+                        <div class="product-info">
+                            <h3>CAPRESSE</h3>
+                            <p class="product-description">Queso mozzarella, jitomate cherry y albahaca fresca.</p>
+                            <p class="product-price">$62.00</p>
+                            <button class="btn-añadir" data-name="Crepa Capresse" data-price="62.00">Añadir</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="Imagenes/Crepa de Atún.jpg" alt="Crepa de Atún">
+                        <div class="product-info">
+                            <h3>ATÚN DELUXE</h3>
+                            <p class="product-description">Atún con mayonesa, elote y queso fundido.</p>
+                            <p class="product-price">$60.00</p>
+                            <button class="btn-añadir" data-name="Crepa Atún Deluxe" data-price="60.00">Añadir</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="Imagenes/Crepa Triple Chocolate+.jpg" alt="Crepa Triple Chocolate">
+                        <div class="product-info">
+                            <h3>TRIPLE CHOCOLATE</h3>
+                            <p class="product-description">Chocolate derretido, Nutella y chispas de chocolate negro.</p>
+                            <p class="product-price">$68.00</p>
+                            <button class="btn-añadir" data-name="Crepa Triple Chocolate" data-price="68.00">Añadir</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="Imagenes/Crepa Ferrero Dream.jpg" alt="Crepa Ferrero Dream">
+                        <div class="product-info">
+                            <h3>FERRERO DREAM</h3>
+                            <p class="product-description">Crema de avellana, trozos de Ferrero Rocher y helado de chocolate.</p>
+                            <p class="product-price">$75.00</p>
+                            <button class="btn-añadir" data-name="Crepa Ferrero Dream" data-price="75.00">Añadir</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="Imagenes/Crepa S’mores.jpg" alt="Crepa S’mores">
+                        <div class="product-info">
+                            <h3>S’MORES</h3>
+                            <p class="product-description">Chocolate, bombones derretidos y galletas trituradas.</p>
+                            <p class="product-price">$70.00</p>
+                            <button class="btn-añadir" data-name="Crepa S’mores" data-price="70.00">Añadir</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="Imagenes/Crepa Brownie.jpg" alt="Crepa Brownie">
+                        <div class="product-info">
+                            <h3>BROWNIE CREPE</h3>
+                            <p class="product-description">Brownie tibio dentro de la crepa con helado encima.</p>
+                            <p class="product-price">$78.00</p>
+                            <button class="btn-añadir" data-name="Crepa Brownie" data-price="78.00">Añadir</button>
+                        </div>
+                    </div>
+                <div class="product-card">
+                    <img src="Imagenes/crepajamon.png" alt="Crepa de Jamón y Queso">
+                    <div class="product-info">
+                        <h3>JAMÓN Y QUESO</h3>
+                        <p class="product-description">Crepa salada con jamón y queso, una opción para todos los gustos.</p>
+                        <p class="product-price">$70.00</p>
+                        <button class="btn-añadir" data-name="Crepa de jamon y queso" data-price="70.00">Añadir</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="menu-category-section" id="malteadas">
+            <div class="category-header">
+                <img src="Imagenes/iconomalteada.png" alt="Icono de Malteada" class="category-icon">
+                <div class="category-title-container">
+                    <h2>MALTEADAS</h2>
+                </div>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="Imagenes/oreo1.jpg" alt="Malteada de Oreo">
+                    <div class="product-info">
+                        <h3>OREO</h3>
+                        <p class="product-description">Cremosa malteada con trozos de galleta Oreo, un clásico irresistible.</p>
+                        <p class="product-price">$50.00</p>
+                        <button class="btn-añadir" data-name="Maltead de oreo" data-price="50.00">Añadir</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="Imagenes/malteadafresa.png" alt="Malteada de Fresa">
+                    <div class="product-info">
+                        <h3>FRESA</h3>
+                        <p class="product-description">Refrescante malteada de fresa, dulce y natural.</p>
+                        <p class="product-price">$50.00</p>
+                        <button class="btn-añadir" data-name="Malteada de fresa" data-price="50.00">Añadir</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="Imagenes/vainilla1.jpg" alt="Malteada de Vainilla">
+                    <div class="product-info">
+                        <h3>VAINILLA</h3>
+                        <p class="product-description">Clásica malteada de vainilla, suave y deliciosa.</p>
+                        <p class="product-price">$50.00</p>
+                        <button class="btn-añadir" data-name="Malteada de vainilla" data-price="50.00">Añadir</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="Imagenes/baileys.png" alt="Malteada de Baileys">
+                    <div class="product-info">
+                        <h3>BAILEYS</h3>
+                        <p class="product-description">Malteada especial con un toque de licor de Baileys para adultos.</p>
+                        <p class="product-price">$70.00</p>
+                        <button class="btn-añadir" data-name="Maltead de baileys" data-price="70.00">Añadir</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sizes-section malted-sizes-section">
+            <div class="sizes-title-container">
+                <h1>TAMAÑOS</h1>
+            </div>
+            <p class="sizes-subtitle">Elige el tamaño perfecto para tu malteada</p>
+            <div class="price-table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Chica</th>
+                            <th>Mediana</th>
+                            <th>Grande</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Malteadas</td>
+                            <td>$50.00</td>
+                            <td>$60.00</td>
+                            <td>$70.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="compact-footer">
+        <div class="footer-social-icons">
+            <a href="#" aria-label="Instagram"><img src="Imagenes/instagram.png" alt="Instagram"></a>
+            <a href="#" aria-label="Twitter"><img src="Imagenes/twitter.png" alt="Twitter"></a>
+            <a href="#" aria-label="WhatsApp"><img src="Imagenes/whatsapp.png" alt="WhatsApp"></a>
+            <a href="#" aria-label="Facebook"><img src="Imagenes/facebook11.png" alt="Facebook"></a>
+        </div>
+        <div class="footer-copyright">
+            <p>Copyright © 2025 Sweet Bites | <a href="mapa-sitio.html">Mapa de Sitio</a> <a href="terminos-politicas.html">Términos y Políticas</a></p>
+        </div>
+    </footer>
+
+
+<script>
+   // Variable para rastrear la posición actual del carrusel
+let slideIndex = 0; 
+const slideWidth = 25; // Asume que cada slide ocupa el 25% del ancho (4 slides por vista)
+
+function moveSlide(n) {
+    const track = document.querySelector('.carousel-track');
+    const totalSlides = document.querySelectorAll('.carousel-slide').length;
+    
+    // Calcula el número de slides que caben en la vista (ej: 4)
+    const visibleSlides = 4; 
+    // Máxima posición de desplazamiento para que el último producto quede visible
+    const maxIndex = totalSlides - visibleSlides; 
+
+    // Mover el índice
+    slideIndex += n;
+
+    // Lógica para loop (opcional) o límites
+    if (slideIndex > maxIndex) {
+        slideIndex = 0; // Regresar al inicio
+    }
+    if (slideIndex < 0) {
+        slideIndex = maxIndex; // Ir al final
+    }
+
+    // Aplicar el movimiento: (posición actual * ancho de un slide)%
+    track.style.transform = `translateX(-${slideIndex * slideWidth}%)`;
+}
+
+// 🎯 Código de MOVIMIENTO AUTOMÁTICO que borraste:
+// Esto hace que el carrusel avance 1 posición cada 4000 milisegundos (4 segundos)
+setInterval(() => moveSlide(1), 4000);
+    // Inicializa el contador del carrito al cargar la página (lee del localStorage)
+    document.addEventListener('DOMContentLoaded', () => {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartCount = document.querySelector('.cart-count');
+        if (cartCount) {
+            cartCount.textContent = cart.length;
+        }
+    });
+
+    // Función para manejar el menú responsivo (si es necesario aquí)
+    function toggleMenu() {
+        document.getElementById("menu").classList.toggle("active");
+    }
+
+    // Lógica para AÑADIR productos al carrito
+    document.querySelectorAll('.btn-añadir').forEach(button => {
+        button.addEventListener('click', (e) => {
+            // Asegúrate de que este bloque use data-attributes si solo has probado con uno
+            const productName = e.target.getAttribute('data-name'); 
+            const productPrice = parseFloat(e.target.getAttribute('data-price')); 
+            
+            // Si el producto no tiene nombre o precio válido, salimos
+            if (!productName || isNaN(productPrice)) {
+                console.error("Producto sin data-name o data-price válido. Revisa el HTML.");
+                return;
+            }
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name: productName, price: productPrice });
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Actualizar contador y animación
+            const cartCount = document.querySelector('.cart-count');
+            cartCount.textContent = cart.length;
+            cartCount.classList.add('bounce');
+            setTimeout(() => cartCount.classList.remove('bounce'), 400); 
+        });
+    });
+</script>
+<script>
+  // --- FILTRO DE BÚSQUEDA ---
+  const buscador = document.getElementById("buscador");
+  const productos = document.querySelectorAll(".product-card");
+
+  buscador.addEventListener("keyup", () => {
+    const texto = buscador.value.toLowerCase();
+
+    productos.forEach(producto => {
+      const nombre = producto.querySelector("h3").textContent.toLowerCase();
+      const descripcion = producto.querySelector(".product-description").textContent.toLowerCase();
+
+      // Mostrar solo si coincide el nombre o descripción
+      if (nombre.includes(texto) || descripcion.includes(texto)) {
+        producto.style.display = "block";
+      } else {
+        producto.style.display = "none";
+      }
+    });
+  });
+</script>
+<script>
+  // Obtener el valor de búsqueda desde la URL
+  const params = new URLSearchParams(window.location.search);
+  const textoBusqueda = params.get("busqueda");
+
+  if (textoBusqueda) {
+    const productos = document.querySelectorAll(".product-card");
+    const texto = textoBusqueda.toLowerCase();
+
+    productos.forEach(producto => {
+      const nombre = producto.querySelector("h3").textContent.toLowerCase();
+      const descripcion = producto.querySelector(".product-description").textContent.toLowerCase();
+
+      if (nombre.includes(texto) || descripcion.includes(texto)) {
+        producto.style.display = "block";
+      } else {
+        producto.style.display = "none";
+      }
+    });
+
+    // (Opcional) mostrar el texto buscado en la barra del menú
+    const barra = document.querySelector(".search-bar input[type='search']");
+    if (barra) barra.value = textoBusqueda;
+  }
+</script>
+
+
+</body>
+</html>
